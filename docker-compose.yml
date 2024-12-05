@@ -1,0 +1,24 @@
+version: '3'
+services:
+  front:
+    ports:
+      - "8080:3309"
+    networks:
+      - mi-red
+    build: 
+      context: .
+      dockerfile: Dockerfile
+  db:
+    image: mysql:8.0.1
+    environment:
+      MYSQL_ROOT_PASSWORD: recu-2024-20213tn004
+      MYSQL_DATABASE: aprobado
+      MYSQL_USER: recuperacion
+      MYSQL_PASSWORD: examen_pasado
+    networks:
+      - mi-red
+    volumes:
+      - ./mysql-recu:/var/lib/mysql
+networks:
+  mi-red:
+    driver: bridge
